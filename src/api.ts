@@ -8,7 +8,7 @@ export type InteractionRequest = {
   /** Type of interaction */
   type: InteractionType;
   /** Interaction data payload */
-  data?: any;
+  data?: unknown;
   /** Guild that the interaction was sent from */
   guild_id?: string;
   /** Channel that the interaction was sent from */
