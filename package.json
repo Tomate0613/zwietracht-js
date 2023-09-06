@@ -4,7 +4,7 @@
   "description": "A library for creating serverless discord bots in javascript",
   "main": "example/api.ts",
   "scripts": {
-    "build": "tsc"
+    "prepare": "tsc"
   },
   "author": "Tomate0613",
   "license": "ISC",
