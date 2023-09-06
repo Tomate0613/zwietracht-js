@@ -2,10 +2,13 @@
   "name": "zwietracht",
   "version": "1.0.0",
   "description": "A library for creating serverless discord bots in javascript",
-  "main": "example/api.ts",
+  "main": "dist/index.ts",
   "scripts": {
     "prepare": "tsc"
   },
+  "files": [
+    "dist"
+  ],
   "author": "Tomate0613",
   "license": "ISC",
   "dependencies": {

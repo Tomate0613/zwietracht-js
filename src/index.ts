@@ -16,6 +16,9 @@ import {
   type MessageInteractionResponse,
 } from './interaction';
 
+export * from './button';
+export * from './select';
+
 export type Locale =
   | 'id'
   | 'en-US'
