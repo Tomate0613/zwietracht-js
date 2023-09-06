@@ -172,10 +172,9 @@ export class Zwietracht {
 
     if (interaction.type !== InteractionType.ApplicationCommand) return; // TODO
 
-    const commandInteraction: CommandInteractionRequest = {
-      data: {},
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+    const commandInteraction = {
       ...interaction,
-      type: InteractionType.ApplicationCommand,
       reply: (data: MessageInteractionResponse) => {
         const newData: any = data;
 
@@ -195,7 +194,7 @@ export class Zwietracht {
           data: newData,
         });
       },
-    };
+    } as CommandInteractionRequest;
 
     const command = this.commands.get(commandInteraction.data.name);
 
@@ -249,7 +248,7 @@ const executeCommand = (
 
     currentCommand = next;
 
-    currentData = currentData.options[0];
+    currentData = currentData.options?.[0];
     args.push(currentData);
   }
 
