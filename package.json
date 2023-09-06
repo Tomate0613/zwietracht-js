@@ -2,7 +2,7 @@
   "name": "zwietracht",
   "version": "1.0.0",
   "description": "A library for creating serverless discord bots in javascript",
-  "main": "dist/index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "prepare": "tsc"
   },
