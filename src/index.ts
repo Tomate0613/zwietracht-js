@@ -16,7 +16,7 @@ import {
   type MessageInteractionResponse,
 } from './interaction';
 
-export * from './button';
+export { default as Button } from './button';
 export * from './select';
 
 export type Locale =
