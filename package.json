@@ -1,0 +1,28 @@
+{
+  "name": "zwietracht",
+  "version": "1.0.0",
+  "description": "A library for creating serverless discord bots in javascript",
+  "main": "example/api.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tomate0613",
+  "license": "ISC",
+  "dependencies": {
+    "discord-interactions": "^3.4.0",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.9",
+    "@types/node-fetch": "^2.6.4",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "discord-api-types": "^0.37.56",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.48.0",
+    "eslint-config-standard-with-typescript": "^39.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-n": "^16.0.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "typescript": "^5.2.2"
+  }
+}
