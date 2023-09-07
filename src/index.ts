@@ -222,43 +222,33 @@ export class Zwietracht {
   }
 }
 
-const executeCommand = (
+function executeCommand(
   command: Command,
   interactionRequest: CommandInteractionRequest
-) => {
+) {
   let currentCommand = command;
-  let currentData = interactionRequest.data;
-  const args = [];
+  const values: any[] = [];
 
-  while (
-    currentCommand.subCommands ||
-    currentCommand.execute ||
-    currentData.options
-  ) {
+  while (currentCommand) {
     if (currentCommand.execute) {
-      currentCommand.execute(interactionRequest, ...args);
+      currentCommand.execute(interactionRequest, ...values);
       return;
     }
 
-    const next = currentCommand.subCommands?.find(
-      (subCommand) => subCommand.name === currentData.name
-    );
-
-    if (!next) {
-      throw new Error(
-        `Could not find subCommand ${currentData.name} in ${currentCommand.name}`
-      );
+    if (!currentCommand.subCommands) {
+      throw new Error('No subcommand or execute');
     }
 
-    currentCommand = next;
+    const option = interactionRequest.data.options?.[0];
+    const subCommand = currentCommand.subCommands.find(function (element) {
+      return element.name === option.name;
+    });
 
-    currentData = currentData.options?.[0];
-    args.push(currentData);
+    if (!subCommand) {
+      throw new Error('Malformed command');
+    }
+
+    values.push(option);
+    currentCommand = subCommand;
   }
-
-  throw new Error(
-    `Mismatch in command structure. Please check the documentation. ${JSON.stringify(
-      interactionRequest
-    )}`
-  );
-};
+}
