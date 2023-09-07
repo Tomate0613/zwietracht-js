@@ -257,6 +257,8 @@ const executeCommand = (
   }
 
   throw new Error(
-    'Mismatch in command structure. Please check the documentation'
+    `Mismatch in command structure. Please check the documentation. ${JSON.stringify(
+      command
+    )} ::: ${JSON.stringify(interactionRequest)}`
   );
 };
