@@ -227,11 +227,16 @@ function executeCommand(
   interactionRequest: CommandInteractionRequest
 ) {
   let currentCommand = command;
-  const values: any[] = [];
+  let currentOptions = interactionRequest.data.options;
 
   while (currentCommand) {
     if (currentCommand.execute) {
-      currentCommand.execute(interactionRequest, ...values);
+      let args = [];
+      if (currentOptions) {
+        args = currentOptions.map((option) => option.value);
+      }
+
+      currentCommand.execute(interactionRequest, ...args);
       return;
     }
 
@@ -239,7 +244,7 @@ function executeCommand(
       throw new Error('No subcommand or execute');
     }
 
-    const option = interactionRequest.data.options?.[0];
+    const option = currentOptions?.[0];
     const subCommand = currentCommand.subCommands.find(function (element) {
       return element.name === option.name;
     });
@@ -248,7 +253,7 @@ function executeCommand(
       throw new Error('Malformed command');
     }
 
-    values.push(option);
     currentCommand = subCommand;
+    currentOptions = option.options;
   }
 }
