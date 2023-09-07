@@ -244,7 +244,11 @@ const executeCommand = (
       (subCommand) => subCommand.name === currentData.name
     );
 
-    if (!next) break;
+    if (!next) {
+      throw new Error(
+        `Could not find subCommand ${currentData.name} in ${currentCommand.name}`
+      );
+    }
 
     currentCommand = next;
 
