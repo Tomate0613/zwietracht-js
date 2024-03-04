@@ -50,7 +50,8 @@ export type Locale =
   | 'th'
   | 'tr'
   | 'uk'
-  | 'vi';
+  | 'vi'
+  | 'es-419';
 
 export type LocalizationMap = Partial<Record<Locale, string | null>>;
 
