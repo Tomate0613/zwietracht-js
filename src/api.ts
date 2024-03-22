@@ -1,5 +1,5 @@
 import { type InteractionType } from 'discord-api-types/payloads';
-import { type Locale, type LocalizationMap } from '.';
+import { type LocaleString, type LocalizationMap } from 'discord-api-types/v10';
 
 // #region Requests
 export type InteractionRequest = {
@@ -26,9 +26,9 @@ export type InteractionRequest = {
   /** Bitwise set of permissions the app or bot has within the channel the interaction was sent from */
   app_permissions?: string;
   /** Selected language of the invoking user */
-  locale?: Locale;
+  locale?: LocaleString;
   /** Guild's preferred locale, if invoked in a guild */
-  guild_locale?: Locale;
+  guild_locale?: LocaleString;
 };
 
 export const enum ApplicationCommandOptionType {

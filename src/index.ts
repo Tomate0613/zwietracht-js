@@ -15,45 +15,10 @@ import {
   type MessageComponent,
   type MessageInteractionResponse,
 } from './interaction';
+import { type LocalizationMap } from 'discord-api-types/v10';
 
 export { default as Button } from './button';
 export * from './select';
-
-export type Locale =
-  | 'id'
-  | 'en-US'
-  | 'en-GB'
-  | 'bg'
-  | 'zh-CN'
-  | 'zh-TW'
-  | 'hr'
-  | 'cs'
-  | 'da'
-  | 'nl'
-  | 'fi'
-  | 'fr'
-  | 'de'
-  | 'el'
-  | 'hi'
-  | 'hu'
-  | 'it'
-  | 'ja'
-  | 'ko'
-  | 'lt'
-  | 'no'
-  | 'pl'
-  | 'pt-BR'
-  | 'ro'
-  | 'ru'
-  | 'es-ES'
-  | 'sv-SE'
-  | 'th'
-  | 'tr'
-  | 'uk'
-  | 'vi'
-  | 'es-419';
-
-export type LocalizationMap = Partial<Record<Locale, string | null>>;
 
 export type SharedNameAndDescription = {
   name: string;

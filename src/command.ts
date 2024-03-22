@@ -1,3 +1,4 @@
+import { type LocalizationMap } from 'discord-api-types/v10';
 import { type SharedNameAndDescription } from '.';
 import {
   type ApplicationCommandType,
@@ -20,24 +21,58 @@ type StringCommandArgument = ApplicationCommandOptionBase & {
   min_length?: number;
 };
 
-type CommandNode = SharedNameAndDescription;
-
 type CommandChildBase = {
-  subCommands?: Command[];
+  subCommands?: SubCommand[];
   args?: CommandArgument[];
 
   execute?: (interaction: CommandInteractionRequest, ...args: any) => void;
 };
 
-export type Command = CommandNode & CommandChildBase;
+export type SubCommand = SharedNameAndDescription & CommandChildBase;
+
+export type Command = {
+  name: string;
+  name_localizations?: LocalizationMap;
+  description: string;
+  description_localizations?: LocalizationMap;
+
+  default_member_permissions?: string;
+  integration_types?: IntegrationType[];
+  contexts?: InteractionContextType[];
+  nsfw?: boolean;
+
+  subCommands?: SubCommand[];
+  args?: CommandArgument[];
+
+  execute?: (interaction: CommandInteractionRequest, ...args: any) => void;
+};
 
 const CHAT_INPUT_COMMAND_TYPE = 1;
+
+export enum InteractionContextType {
+  GUILD = 0,
+  BOT_DM = 1,
+  PRIVATE_CHANNEL = 2,
+}
+
+export enum IntegrationType {
+  GUILD_INSTALL = 0,
+  USER_INSTALL = 1,
+}
 
 export type ParsedCommand = {
   options?: ApplicationCommandOption[];
   default_member_permissions?: string;
+  /**
+   * @deprecated
+   */
   dm_permission?: boolean;
+  /**
+   * @deprecated
+   */
   default_permission?: boolean;
+  integration_types?: IntegrationType[];
+  contexts?: InteractionContextType[];
   type?: ApplicationCommandType;
   nsfw?: boolean;
 } & SharedNameAndDescription;
@@ -50,6 +85,10 @@ export function parseCommand(command: Command): ParsedCommand {
     name_localizations: command.name_localizations,
     description_localizations: command.description_localizations,
     options: parseOptions(command, 0).concat(parseArgs(command)),
+    contexts: command.contexts,
+    integration_types: command.integration_types,
+    default_member_permissions: command.default_member_permissions,
+    nsfw: command.nsfw,
   };
 }
 
