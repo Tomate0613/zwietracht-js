@@ -1,6 +1,7 @@
 import { Zwietracht } from '../src';
 import Button from '../src/button';
 import * as dotenv from 'dotenv';
+import { IntegrationType, InteractionContextType } from '../src/command';
 
 dotenv.config();
 
@@ -28,6 +29,15 @@ zt.addCommand({
       components: [[pingReplyButton.toComponent('2')]],
     });
   },
+  integration_types: [
+    IntegrationType.USER_INSTALL,
+    IntegrationType.GUILD_INSTALL,
+  ],
+  contexts: [
+    InteractionContextType.GUILD,
+    InteractionContextType.BOT_DM,
+    InteractionContextType.PRIVATE_CHANNEL,
+  ],
 });
 
 zt.registerCommands();

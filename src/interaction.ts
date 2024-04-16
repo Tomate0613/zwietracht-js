@@ -45,7 +45,7 @@ export type MessageComponentInteractionRequest = {
   reply: (response: MessageInteractionResponse) => void;
 } & InteractionRequest;
 
-type ActionRow = Button[] | [SelectComponent];
+export type ActionRow = Button[] | [SelectComponent];
 
 export type ApiComponent =
   | ActionRow
